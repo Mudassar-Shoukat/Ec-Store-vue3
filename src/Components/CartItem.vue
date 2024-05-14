@@ -29,7 +29,7 @@
         <div class="flex items-center justify-center">
           <button
             class="block w-[25px] h-[23px] bg-[#d7d2d2] no-underline text-center leading-[23px]"
-            @click="Decrement_Cart(item.id)"
+            @click="Decrement(item.id)"
           >
             -
           </button>
@@ -40,7 +40,7 @@
           />
           <button
             class="block w-[25px] h-[23px] bg-[#d7d2d2] no-underline text-center leading-[23px]"
-            @click="Increment_Cart(item.id)"
+            @click="Increment(item.id)"
           >
             +
           </button>
@@ -50,7 +50,7 @@
       <div class="flex text-right justify-end">
         <button
           class="hover:underline hover:text-[red]"
-          @click="RemoveFromCart()"
+          @click="removeFromCart()"
         >
           Remove
         </button>
@@ -58,30 +58,35 @@
     </div>
   </div>
 </template>
-
-<script>
+<script setup>
 import { UseCartStore } from "../Store";
-import { mapActions, mapState } from "pinia";
-export default {
-  props: {
-    item: Object,
-  },
-  data() {
-    return {
-      quantity: 1,
-    };
-  },
+import { storeToRefs } from "pinia";
+import { defineProps, ref } from "vue";
 
-  
-  methods: {
-    ...mapActions( UseCartStore, ["Increment_Cart", "Decrement_Cart"]),
+const cartStore = UseCartStore();
 
-    RemoveFromCart() {
-      const store = UseCartStore();
-      store.RemoveFromCart(this.item);
-      console.log("store clear", store);
-    },
-  },
+const Increment_Cart = storeToRefs(cartStore);
+const Decrement_Cart = storeToRefs(cartStore);
+
+const props = defineProps({
+  item: Object,
+});
+
+const quantity = ref(1);
+
+const Increment = () => {
+  cartStore.Increment_Cart(props.item.id);
+  console.log("increment", props.item.id);
+};
+
+const Decrement = () => {
+  cartStore.Decrement_Cart(props.item.id);
+  console.log("decrement", props.item.id);
+};
+
+const removeFromCart = () => {
+  cartStore.RemoveFromCart(props.item);
+  console.log("remove ", props.item);
 };
 </script>
 
