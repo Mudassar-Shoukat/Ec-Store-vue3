@@ -6,7 +6,7 @@
       class="w-full py-2 px-6 border rounded-l-[20px] outline-[#eeecec]"
       type="text"
       v-model="searchTerm"
-      @keyup.enter="searchProduct"
+      @keyup="searchProduct"
       placeholder="Search... "
     />
 
@@ -83,54 +83,51 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import axios from "axios";
+import { ref, onMounted, computed } from "vue";
+const products = ref([]);
 
-export default {
-  data() {
-    return {
-      products: [],
-      searchTerm: "",
-      timer: 0,
-    };
-  },
-  computed: {
-    productList() {
-      return this.products.products;
-    },
-  },
+const searchTerm = ref("");
+const timer = ref(0);
 
-  mounted() {
-    const url = "https://dummyjson.com/products";
-    axios.get(url).then((response) => {
-      this.products = response.data;
-      console.log(this.products);
-    });
-  },
-  methods: {
-    searchProduct() {
-      if (this.timer) {
-        clearTimeout(this.timer);
-        this.timer = null;
-      }
-      this.timer = setTimeout(() => {
-        this.products.products = this.products.products.filter((product) => {
-          return product.title.toLowerCase().includes(this.searchTerm);
-        });
-      }, 1000);
-    },
+const productList = computed(() => {
+  return products.value.products;
+});
 
-    clear() {
-      this.searchTerm = "";
-      if (this.searchTerm === "") {
-     this.$router.push({ path: "/" });
-        console.log("empty");
-      }
-      console.log("clear");
-    },
-  },
+const fetchProducts = async () => {
+  try {
+    const response = await axios.get("https://dummyjson.com/products");
+    products.value = response.data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
 };
+
+onMounted(fetchProducts);
+
+function searchProduct() {
+  if (timer.value) {
+    clearTimeout(timer.value);
+    timer.value = null;
+  }
+  timer.value = setTimeout(() => {
+    products.value.products = products.value.products.filter((product) => {
+      return product.title.toLowerCase().includes(searchTerm.value);
+    });
+  }, 1000);
+  // console.log("product id", products.value.product.id);
+}
+
+function clear() {
+  searchTerm.value = "";
+  if (searchTerm.value === "") {
+    // this.$router.push({ path: "/Login" });
+    console.log("search term is clear");
+  }
+}
 </script>
+
 <style scoped>
 #input {
   @apply outline-none border-r-0 focus:outline-none focus:border-r-0;
