@@ -89,7 +89,7 @@ export default {
 
       if (loginResponse.data.token) {
         this.setAuthUser(loginResponse.data);
-        this.$router.push({ path: "/" });
+        // this.$router.push({ path: "/" });
       } else {
         console.log("error");
       }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <header
-      class="bg-[white] fixed top-0 w-full [box-shadow:0_3px_3px_rgb(237,_240,_239)]"
+      class="bg-[white] fixed top-0 w-full [box-shadow:0_3px_3px_rgb(237,_240,_239)] "
     >
       <slot name="header">
         <div class="border px-7">
@@ -15,7 +15,7 @@
               <!-- Home Button -->
               <button
                 type="button"
-                class="w-[100px] h-[35px] mt-2 mb-2 text-sm font-medium bg-[#e8e5e524] rounded-[5px] border border-[#e6e5e5] hover:bg-gray-100 hover:text-black hover:[transition:0.3s_ease-in-out]"
+                class="w-[100px] h-[35px] mt-2 mb-2 text-sm font-medium bg-[#e8e5e524] rounded-[5px] border border-[#e6e5e5] hover:bg-gray-100 hover:text-black hover:[transition:0.3s_ease-in-out] "
                 @click="$router.push('/')"
               >
                 Home
@@ -125,7 +125,7 @@
                   </div>
                   <!-- Sub total -->
                   <div
-                    class="m-2 rounded-lg border bg-[white] p-5 shadow w-[440px]"
+                    class="m-2 rounded-lg border bg-[white] p-5 shadow w-[440px] "
                   >
                     <hr class="my-4" />
 
@@ -179,11 +179,14 @@ const quantity = ref(1);
 const cartStore = UseCartStore();
 const { cart } = storeToRefs(cartStore);
 const authStore = UseAuthStore();
+
 const { user, userToken } = storeToRefs(authStore);
+// const logOut = storeToRefs(authStore);
+
 onMounted(() => {
   let token = localStorage.getItem("userToken");
   let user = localStorage.getItem("user");
-
+// console.log("user",user);
   if (token && user) {
     let parsedUser = JSON.parse(user);
     authStore.setAuthUser(parsedUser);
@@ -193,6 +196,14 @@ onMounted(() => {
 const TotalPrice = computed(() => {
   return cart.value.reduce((acc, item) => acc + item.price * item.qty, 0);
 });
+
+const logout = () => {
+console.log("click logout ");
+
+authStore.logout()
+
+
+};
 </script>
 <style scoped>
 .right-drawer {

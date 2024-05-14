@@ -56,7 +56,7 @@
     <div
       v-for="product in productList"
       :key="product.id"
-      class="w-[300px] h-[450px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] overflow-hidden bg-[#f6f4f4] border-zinc-300 hover:cursor-pointer hover:scale-[1.02] hover:[transition:0.3s_ease-in-out]"
+      class="  w-[300px] h-[450px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] overflow-hidden bg-[#f6f4f4] border-zinc-300 hover:cursor-pointer hover:border-[#808383] "
     >
       <router-link
         :to="{
@@ -136,4 +136,10 @@ function clear() {
 #button {
   @apply outline-none border-l-0 focus:outline-none focus:border-l-0;
 }
+
+
+
+
+
+
 </style>
