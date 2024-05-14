@@ -60,42 +60,30 @@
     </div>
   </div>
 </template>
-
-<script>
+<script setup>
 import axios from "axios";
 import { UseAuthStore } from "../Store";
-import { mapActions } from "pinia";
+import { storeToRefs } from "pinia";
+import { useRouter } from "vue-router";
+const FormValue = {
+  username: "kminchelle",
+  password: "0lelplR",
+};
 
-export default {
-  data() {
-    return {
-      FormValue: {
-        username: "kminchelle",
-        password: "0lelplR",
-      },
-    };
-  },
+const authStore = UseAuthStore();
+const { userToken, user } = storeToRefs(authStore);
+const router = useRouter();
+const login = async () => {
+  const loginResponse = await axios.post(
+    "https://dummyjson.com/auth/login",
+    FormValue
+  );
 
-  methods: {
-    ...mapActions(UseAuthStore, ["setAuthUser"]),
-    signin() {
-      console.log("click sign in button");
-    },
-    async login() {
-      const loginResponse = await axios.post(
-        "https://dummyjson.com/auth/login",
-        this.FormValue
-      );
-
-      if (loginResponse.data.token) {
-        this.setAuthUser(loginResponse.data);
-        // this.$router.push({ path: "/" });
-      } else {
-        console.log("error");
-      }
-    },
-  },
+  if (loginResponse.data.token) {
+    authStore.setAuthUser(loginResponse.data);
+    router.push({ path: "/" });
+  } else {
+    console.log("error");
+  }
 };
 </script>
-
-<style scoped></style>

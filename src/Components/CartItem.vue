@@ -65,8 +65,8 @@ import { defineProps, ref } from "vue";
 
 const cartStore = UseCartStore();
 
-// const Increment_Cart = storeToRefs(cartStore);
-// const Decrement_Cart = storeToRefs(cartStore);
+const Increment_Cart = storeToRefs(cartStore);
+const Decrement_Cart = storeToRefs(cartStore);
 
 const props = defineProps({
   item: Object,

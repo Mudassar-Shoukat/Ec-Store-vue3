@@ -63,6 +63,7 @@ export const UseAuthStore = defineStore("auth", {
     userToken: null,
   }),
   actions: {
+    
     async setAuthUser(data) {
       const { token } = data;
       this.userToken = token;
