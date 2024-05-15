@@ -110,6 +110,8 @@ onMounted(fetchProducts);
 function searchProduct() {
   if (timer.value) {
     clearTimeout(timer.value);
+    // coplete
+    
     timer.value = null;
   }
   timer.value = setTimeout(() => {
