@@ -64,7 +64,7 @@
                 <div style="text-align: right">
                   <button
                     @click="drawerVisible = true"
-                    class="py-4 px-1 relative border-2 border-transparent text-gray-800 rounded-full focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out"
+                    class="py-4 px-1 relative border-2 border-transparent text-gray-800 rounded-full focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out "
                     aria-label="Cart"
                   >
                     <svg
@@ -124,8 +124,8 @@
                     <CartItemVue :item="item" />
                   </div>
                   <!-- Sub total -->
-                  <div
-                    class="m-2 rounded-lg border bg-[white] p-5 shadow w-[440px] "
+                  <div 
+                    class="m-[5px] rounded-lg border bg-[white] p-5 shadow w-[97%] "
                   >
                     <hr class="my-4" />
 
@@ -162,7 +162,7 @@
     <main class="px-[6px] py-[16px] mt-[80px] bg-[white]">
       <slot> </slot>
     </main>
-    <footer class="bg-[#e60707] px-[6px] py-[10px] text-white">
+    <footer class="bg-[#e9e5e5] px-[6px] py-[10px] ">
       <slot name="footer">Footer </slot>
     </footer>
   </div>
@@ -230,5 +230,8 @@ authStore.logout()
   opacity: 0.3;
   z-index: 199;
   transition: opacity 0.2s;
+}
+.close:hover{
+  background: rgb(240, 238, 238);
 }
 </style>

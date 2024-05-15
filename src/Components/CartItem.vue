@@ -1,10 +1,10 @@
 <template>
   <div
-    class="border-[1px] border-[rgb(210,208,190)] outline-[#f0eaea] bg-[#faf8f8] [box-shadow:0_3px_3px_rgb(237,_240,_239)] m-[4px] flex w-[450px] p-[10px] rounded"
+    class="border-[1px] border-[rgb(210,208,190)] outline-[#f0eaea] bg-[#faf8f8] [box-shadow:0_3px_3px_rgb(237,_240,_239)] m-[4px] flex w-[97%] p-[10px] rounded"
   >
     <!--  -->
     <div
-      class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
+      class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border  border-gray-200"
     >
       <img
         :src="item.images[0]"
@@ -49,8 +49,8 @@
         </div>
       </div>
 
-      <div class="flex text-right justify-end">
-        <button
+      <div class="flex text-right justify-end " >
+        <button 
           class="hover:underline hover:text-[red]"
           @click="removeFromCart()"
         >
