@@ -69,13 +69,7 @@
 
         <div class="h-[45px] w-full p-1 flex bg-[white]">
           <button
-            @click="
-              addtoCart({
-                ...product,
-                qty: 1,
-                totalPrice: 1 * parseFloat(product.price),
-              })
-            "
+            @click="addToCart"
             type="button"
             class="text-white bg-[#12123b] hover:bg-[#26266b] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2"
           >
@@ -124,16 +118,17 @@ import { storeToRefs } from "pinia";
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 
-// const { AddtoCart } = mapActions(UseCartStore);
 const cartStore = UseCartStore();
-const AddCart = storeToRefs(cartStore);
+const { AddtoCart } = storeToRefs(cartStore);
 const product = ref("");
-// const product = "";
-
 const route = useRoute();
 
-const addtoCart = () => {
-  cartStore.AddtoCart(product.value);
+const addToCart = () => {
+  cartStore.AddtoCart({
+    ...product.value,
+    qty: 1,
+    totalPrice: 1 * parseFloat(product.value.price),
+  });
 };
 
 onMounted(() => {

@@ -60,7 +60,7 @@ export const UseCartStore = defineStore("counter", {
       }
     },
   },
-});
+ });
 
 // Form or user auth store
 export const UseAuthStore = defineStore("auth", {
