@@ -6,16 +6,21 @@ export const UseCartStore = defineStore("counter", {
     cart: [],
   }),
   actions: {
-    AddtoCart(product) {
+    AddtoCart(product){
+      // console.log(product);
       const { id } = product;
       let productItm = this.cart.find((item) => {
-        return item.id == id;
+    
+        return item.id == id;   
+        
       });
 
       if (!productItm) {
         this.cart.push(product);
+        console.log("if",this.cart);
       }
     },
+
     RemoveFromCart(product) {
       this.cart = this.cart.filter((item) => item.id !== product.id);
       console.log("remove single product in cart", this.cart);
@@ -34,7 +39,8 @@ export const UseCartStore = defineStore("counter", {
         console.log("product total price", product.totalPrice);
         console.log("product increment quantity in store", product.qty++);
         console.log("product increment quantity in store object", product);
-      } else {
+      } 
+      else {
         console.warn("Item is out of stock or not found");
       }
     },
