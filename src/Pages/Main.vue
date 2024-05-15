@@ -3,6 +3,7 @@
   <div class="w-[500px] mx-auto mb-3 flex">
     <input
       id="input"
+
       class="w-full py-2 px-6 border rounded-l-[20px] outline-[#eeecec]"
       type="text"
       v-model="searchTerm"
