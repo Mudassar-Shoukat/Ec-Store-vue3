@@ -1,7 +1,7 @@
 <template>
   <div>
     <header
-      class="bg-[white] fixed top-0 w-full [box-shadow:0_3px_3px_rgb(237,_240,_239)] "
+      class="bg-[white] fixed top-0 w-full  [box-shadow:0_3px_3px_rgb(237,_240,_239)] "
     >
       <slot name="header">
         <div class="border px-7">

@@ -116,14 +116,14 @@ function searchProduct() {
     products.value.products = products.value.products.filter((product) => {
       return product.title.toLowerCase().includes(searchTerm.value);
     });
-  }, 1000);
+  }, 800);
   // console.log("product id", products.value.product.id);
 }
 
 function clear() {
   searchTerm.value = "";
   if (searchTerm.value === "") {
-    // this.$router.push({ path: "/Login" });
+    fetchProducts()
     console.log("search term is clear");
   }
 }
